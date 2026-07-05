@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Contact Us | Model College{% endblock %}
+
+{% block content %}
+<section class="sub-header">
+    {% include '_nav.html' %}
+    <h1>Contact Us</h1>
+</section>
+
+<section class="location">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.359046447456!2d73.10555087510106!3d19.223177747335843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be795eb2140fdbf%3A0x36d96397bde202c!2sKeraleeya%20Samajam&#39;s%20Model%20College%20(Autonomous)!5e0!3m2!1sen!2sin!4v1767610965979!5m2!1sen!2sin"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</section>
+
+<section class="contact-us">
+    <div class="row">
+        <div class="contact-col">
+            <div>
+                <i class="fa fa-home"></i>
+                <span>
+                    <h5>KERALEEYA SAMAJAM'S MODEL COLLEGE</h5>
+                    <p>Kanchangaon Village, Khambalpada, Dombivli (E) 421201.</p>
+                </span>
+            </div>
+            <div>
+                <i class="fa fa-phone"></i>
+                <span>
+                    <h5>70456 82157 / 70456 82158</h5>
+                    <p>Mon to Fri — 9am to 6pm</p>
+                </span>
+            </div>
+            <div>
+                <i class="fa fa-envelope-o"></i>
+                <span>
+                    <h5>info@model-college.com</h5>
+                    <p>Send us your query anytime!</p>
+                </span>
+            </div>
+        </div>
+
+        <div class="contact-col">
+            <form action="{{ url_for('contact') }}" method="POST">
+                <input type="text"  name="name"    placeholder="Enter your name"    required>
+                <input type="email" name="email"   placeholder="Enter your email"   required>
+                <input type="text"  name="subject" placeholder="Enter your subject" required>
+                <textarea rows="8"  name="message" placeholder="Your message..."    required></textarea>
+                <button type="submit" class="hero-btn red-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

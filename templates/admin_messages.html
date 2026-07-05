@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Contact Messages | Admin{% endblock %}
+
+{% block content %}
+<section class="sub-header" style="height:30vh;">
+    {% include '_nav.html' %}
+    <h1>Contact Messages</h1>
+</section>
+
+<section style="width:90%; margin:50px auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+        <h2 style="color:#0a2c5e;">All Messages ({{ messages|length }})</h2>
+        <a href="{{ url_for('dashboard') }}" class="hero-btn red-btn">← Back to Dashboard</a>
+    </div>
+
+    {% if messages %}
+    <div class="table-wrapper">
+    <table class="syllabus-table">
+        <thead>
+            <tr><th>#</th><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Received</th></tr>
+        </thead>
+        <tbody>
+        {% for msg in messages %}
+        <tr>
+            <td>{{ msg['id'] }}</td>
+            <td>{{ msg['name'] }}</td>
+            <td>{{ msg['email'] }}</td>
+            <td>{{ msg['subject'] }}</td>
+            <td style="max-width:300px; text-align:left;">{{ msg['message'][:100] }}{% if msg['message']|length > 100 %}…{% endif %}</td>
+            <td>{{ msg['received_at'][:16] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% else %}
+    <p>No messages received yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

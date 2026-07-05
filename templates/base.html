@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Model College{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- Flash Messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-container">
+      {% for category, message in messages %}
+        <div class="flash flash-{{ category }}">
+          <i class="fa fa-{% if category == 'success' %}check-circle{% else %}exclamation-circle{% endif %}"></i>
+          {{ message }}
+          <span class="flash-close" onclick="this.parentElement.remove()">×</span>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
+<!-- Footer -->
+<section class="footer">
+    <h4>About Us</h4>
+    <p>We are committed to providing quality education and fostering a supportive learning environment for all our students.</p>
+    <div class="icons">
+        <i class="fa fa-facebook" style="color:blue;"></i>
+        <i class="fa fa-twitter" style="color:rgb(42, 114, 138);"></i>
+        <i class="fa fa-instagram" style="color: #f44336;"></i>
+        <i class="fa fa-linkedin" style="color:skyblue;"></i>
+    </div>
+    {% if session.user_id %}
+    <p style="margin-top:10px;">
+        Logged in as <strong>{{ session.name }}</strong> ({{ session.role }})
+        | <a href="{{ url_for('logout') }}" style="color:#f44336;">Logout</a>
+        | <a href="{{ url_for('dashboard') }}" style="color:#aaa;">Dashboard</a>
+    </p>
+    {% else %}
+    <p style="margin-top:10px;"><a href="{{ url_for('login') }}" style="color:#f44336;">Login</a></p>
+    {% endif %}
+    <p>Made by Sohan Samir Maity</p>
+</section>
+
+<script>
+var navLinks = document.getElementById("navLinks");
+function showMenu(){ if(navLinks) navLinks.style.right = "0"; }
+function hideMenu(){ if(navLinks) navLinks.style.right = "-200px"; }
+setTimeout(() => {
+    document.querySelectorAll('.flash').forEach(f => f.remove());
+}, 5000);
+</script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+<nav>
+    <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="College Logo"></a>
+    <div class="nav-links" id="navLinks">
+        <i class="fa fa-times" onclick="hideMenu()"></i>
+        <ul>
+            <li><a href="{{ url_for('index') }}">HOME</a></li>
+            <li><a href="{{ url_for('about') }}">ABOUT US</a></li>
+            <li><a href="{{ url_for('courses') }}">COURSES</a></li>
+            <li><a href="{{ url_for('academics') }}">ACADEMICS</a></li>
+            <li><a href="{{ url_for('contact') }}">CONTACT</a></li>
+            <li><a href="{{ url_for('admission') }}">ADMISSION</a></li>
+            {% if session.user_id %}
+            <li><a href="{{ url_for('dashboard') }}" style="color:#f44336;">Dashboard</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}" style="color:#f44336;">LOGIN</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>

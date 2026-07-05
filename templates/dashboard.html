@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Model College{% endblock %}
+
+{% block content %}
+<section class="sub-header" style="height:30vh;">
+    {% include '_nav.html' %}
+    <h1>{{ session.name }}'s Dashboard</h1>
+</section>
+
+<section style="width:85%; margin:60px auto;">
+
+{% if role == 'admin' %}
+    <h2 style="color:#0a2c5e; margin-bottom:30px;">Admin Overview</h2>
+
+    <!-- Stats Cards -->
+    <div class="stats-row" style="margin-bottom:50px;">
+        <div class="stat-box">
+            <h2>{{ data.total_users }}</h2>
+            <p>Total Users</p>
+        </div>
+        <div class="stat-box">
+            <h2>{{ data.total_admissions }}</h2>
+            <p>Total Applications</p>
+        </div>
+        <div class="stat-box" style="border-color:#f39c12;">
+            <h2>{{ data.pending }}</h2>
+            <p>Pending Reviews</p>
+        </div>
+        <div class="stat-box" style="border-color:#27ae60;">
+            <h2>{{ data.messages }}</h2>
+            <p>Contact Messages</p>
+        </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div style="display:flex; gap:15px; flex-wrap:wrap; margin-bottom:40px;">
+        <a href="{{ url_for('admin_admissions') }}" class="hero-btn red-btn">📋 Manage Admissions</a>
+        <a href="{{ url_for('admin_messages') }}" class="hero-btn red-btn">📩 View Messages</a>
+    </div>
+
+    <!-- Recent Applications -->
+    <h3 style="margin-bottom:15px;">Recent Applications</h3>
+    {% if data.recent_admissions %}
+    <div class="table-wrapper">
+    <table class="syllabus-table">
+        <tr>
+            <th>Name</th><th>Email</th><th>Course</th><th>Status</th><th>Applied On</th>
+        </tr>
+        {% for app in data.recent_admissions %}
+        <tr>
+            <td>{{ app['full_name'] }}</td>
+            <td>{{ app['email'] }}</td>
+            <td>{{ app['course'] }}</td>
+            <td>
+                <span class="status-badge status-{{ app['status']|lower }}">{{ app['status'] }}</span>
+            </td>
+            <td>{{ app['applied_at'][:10] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    {% else %}
+    <p>No applications yet.</p>
+    {% endif %}
+
+{% elif role == 'student' %}
+    <h2 style="color:#0a2c5e; margin-bottom:30px;">My Applications</h2>
+    {% if data.my_applications %}
+    <div class="table-wrapper">
+    <table class="syllabus-table">
+        <tr>
+            <th>Name</th><th>Course</th><th>Status</th><th>Applied On</th>
+        </tr>
+        {% for app in data.my_applications %}
+        <tr>
+            <td>{{ app['full_name'] }}</td>
+            <td>{{ app['course'] }}</td>
+            <td><span class="status-badge status-{{ app['status']|lower }}">{{ app['status'] }}</span></td>
+            <td>{{ app['applied_at'][:10] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    {% else %}
+    <p>You haven't submitted any applications yet. <a href="{{ url_for('admission') }}" style="color:#f44336;">Apply now →</a></p>
+    {% endif %}
+
+{% else %}
+    <h2 style="color:#0a2c5e;">Welcome, {{ session.name }}!</h2>
+    <p>Faculty dashboard coming soon. Contact the admin for more details.</p>
+{% endif %}
+
+</section>
+{% endblock %}

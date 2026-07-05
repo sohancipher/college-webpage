@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}Admission | Model College{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="sub-headers">
+    {% include '_nav.html' %}
+    <h1>Admissions 2025–26</h1>
+    <h3>Empowering students through quality education and holistic development</h3>
+    <a href="#apply-form" class="apply-btn">Apply Now ↓</a>
+</section>
+
+<section class="sup-header">
+
+    <!-- Eligibility -->
+    <section class="admissions-section">
+        <h2>Eligibility Criteria</h2>
+        <p>Candidates must fulfil the eligibility conditions prescribed by the affiliated university and regulatory authorities.</p>
+        <h3>Undergraduate Programs (UG)</h3>
+        <ul>
+            <li>Passed 10+2 (HSC or equivalent) from a recognised board</li>
+            <li>Commerce stream required for B.Com programs</li>
+            <li>Science stream preferred for B.Sc programs</li>
+            <li>Minimum qualifying marks as per university norms</li>
+        </ul>
+        <h3>Postgraduate Programs (PG)</h3>
+        <ul>
+            <li>Bachelor's degree in relevant discipline from a recognised university</li>
+            <li>Minimum 45%–50% aggregate marks (relaxation as per rules)</li>
+            <li>Final-year students may apply provisionally</li>
+        </ul>
+        <p><strong>Note:</strong> Eligibility criteria may vary based on government or university notifications.</p>
+    </section>
+
+    <!-- Fees Table -->
+    <section class="admissions-section light-bg">
+        <h2 style="text-align:center;">Fees Structure</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Course Name</th>
+                        <th>Stream</th>
+                        <th>Duration</th>
+                        <th>Fee / Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% set current_level = namespace(value='') %}
+                {% for course in courses %}
+                    {% if course['level'] != current_level.value %}
+                        {% set current_level.value = course['level'] %}
+                        <tr class="level-heading">
+                            <td colspan="5">
+                                {% if course['level'] == 'UG' %}Undergraduate Programmes
+                                {% elif course['level'] == 'PG' %}Postgraduate Programs
+                                {% else %}Doctoral Programmes (PhD){% endif %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <td>{{ course['level'] }}</td>
+                        <td>{{ course['name'] }}</td>
+                        <td>{{ course['stream'] }}</td>
+                        <td>{{ course['duration'] }}</td>
+                        <td>₹{{ "{:,}".format(course['fee']) }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Important Dates -->
+    <section class="admissions-section">
+        <h2>Important Dates</h2>
+        <ul class="dates-list">
+            <li><strong>Online Application Opens:</strong> 1st June 2025</li>
+            <li><strong>Last Date for Application:</strong> 30th June 2025</li>
+            <li><strong>Merit List Announcement:</strong> 5th July 2025</li>
+            <li><strong>Document Verification:</strong> 7th – 9th July 2025</li>
+            <li><strong>Admission Confirmation:</strong> 10th July 2025</li>
+            <li><strong>Commencement of Classes:</strong> 15th July 2025</li>
+        </ul>
+    </section>
+
+    <!-- Application Form -->
+    <section class="admissions-section" id="apply-form">
+        <h2>Online Application Form</h2>
+        <p>Fill in the details below to apply for admission. You will be contacted via email once your application is reviewed.</p>
+
+        <form action="{{ url_for('admission') }}" method="POST" class="admission-form">
+            <div class="form-grid">
+                <div class="form-group-adm">
+                    <label>Full Name *</label>
+                    <input type="text" name="full_name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group-adm">
+                    <label>Email Address *</label>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group-adm">
+                    <label>Phone Number *</label>
+                    <input type="tel" name="phone" placeholder="Enter phone number" required>
+                </div>
+                <div class="form-group-adm">
+                    <label>Date of Birth *</label>
+                    <input type="date" name="dob" required>
+                </div>
+                <div class="form-group-adm" style="grid-column: 1/-1;">
+                    <label>Select Course *</label>
+                    <select name="course_id" required>
+                        <option value="">-- Choose a Course --</option>
+                        {% for course in courses %}
+                        <option value="{{ course['id'] }}">{{ course['level'] }} — {{ course['name'] }} (₹{{ "{:,}".format(course['fee']) }}/yr)</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group-adm" style="grid-column: 1/-1;">
+                    <label>Address *</label>
+                    <textarea name="address" rows="3" placeholder="Enter your full address" required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="hero-btn red-btn" style="margin-top:20px;">Submit Application</button>
+        </form>
+    </section>
+</section>
+{% endblock %}

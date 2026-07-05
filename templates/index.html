@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}Home | Model College{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="header">
+    {% include '_nav.html' %}
+    <div class="text-box">
+        <h1>Welcome To Our University</h1>
+        <p>Your journey to excellence begins here. Join us to unlock your potential and achieve your dreams.</p>
+        <a href="{{ url_for('admission') }}" class="hero-btn">Apply Now</a>
+    </div>
+</section>
+
+<!-- Courses Highlights -->
+<section class="course">
+    <h1>Courses We Offer</h1>
+    <p>Explore our wide range of courses designed to help you achieve your academic and career goals.</p>
+    <div class="row">
+        <div class="course-col">
+            <h3>Undergraduate</h3>
+            <p>Comprehensive education in diverse fields equipping students with the knowledge and skills needed for professional success.</p>
+        </div>
+        <div class="course-col">
+            <h3>Postgraduate</h3>
+            <p>Advanced learning and research programs enabling students to specialise in their chosen fields and contribute to academic communities.</p>
+        </div>
+        <div class="course-col">
+            <h3>Ph.D Programs</h3>
+            <p>In-depth research and academic excellence fostering innovation and critical thinking across various disciplines.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Campus -->
+<section class="campus">
+    <h1>Our Campus</h1>
+    <p>Discover our vibrant campus, state-of-the-art facilities, and the supportive community that makes us a great place to learn.</p>
+    <div class="row">
+        <div class="campus-col">
+            <img src="{{ url_for('static', filename='images/campus1.jpg') }}" alt="Library">
+            <div class="layer"><h3>Library</h3></div>
+        </div>
+        <div class="campus-col">
+            <img src="{{ url_for('static', filename='images/campus3.webp') }}" alt="IT/CS Lab">
+            <div class="layer"><h3>IT / CS Lab</h3></div>
+        </div>
+        <div class="campus-col">
+            <img src="{{ url_for('static', filename='images/campus4.jpg') }}" alt="Auditorium">
+            <div class="layer"><h3>Auditorium</h3></div>
+        </div>
+    </div>
+</section>
+
+    <!-- news Section  -->
+<section class="news-section">
+
+<h2 class="news-title">Latest News & Announcements</h2>
+
+<div class="news-scroll">
+
+<div class="news-card">
+<h3>Admission Open 2026</h3>
+<p>Applications are now open for all undergraduate courses.</p>
+<a href="{{ url_for('admission') }}" class="news-btn">Read More</a>
+</div>
+
+<div class="news-card">
+<h3>Internal Exam Schedule</h3>
+<p>The internal examination timetable has been released.</p>
+<a href="#" class="news-btn">View Notice</a>
+</div>
+
+<div class="news-card">
+<h3>AI Workshop</h3>
+<p>Computer Science department organizing AI workshop.</p>
+<a href="#" class="news-btn">Register</a>
+</div>
+
+<div class="news-card">
+<h3>Cultural Fest 2026</h3>
+<p>Annual cultural festival will be held next month.</p>
+<a href="#" class="news-btn">Details</a>
+</div>
+
+<div class="news-card">
+<h3>Updated Syllabus</h3>
+<p>New syllabus for FY courses has been uploaded.</p>
+<a href="{{ url_for('academics') }}" class="news-btn">Download</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- Testimonials -->
+<section class="testimonial">
+    <h1>What Our Students Say</h1>
+    <p>Hear from our students about their experiences and the impact our university has had on their growth.</p>
+    <div class="row">
+        <div class="testimonial-col">
+            <img src="{{ url_for('static', filename='images/user1.jpg') }}" alt="Student">
+            <div>
+                <p>"The university has provided me with incredible opportunities to learn and grow. The faculty is supportive, and the campus environment is vibrant."</p>
+                <h3>Ashish Tiwari</h3>
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+            </div>
+        </div>
+        <div class="testimonial-col">
+            <img src="{{ url_for('static', filename='images/user2.jpg') }}" alt="Student">
+            <div>
+                <p>"I am grateful for the education and experiences I've had here. The courses are well-structured and professors are knowledgeable and approachable."</p>
+                <h3>Sachin Pandey</h3>
+                <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h1>Ready to Join Us?</h1>
+    <p>Take the next step in your education. Apply now to become part of our vibrant community!</p>
+    <a href="{{ url_for('admission') }}" class="hero-btn">Apply Now</a>
+</section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Manage Admissions | Admin{% endblock %}
+
+{% block content %}
+<section class="sub-header" style="height:30vh;">
+    {% include '_nav.html' %}
+    <h1>Manage Admissions</h1>
+</section>
+
+<section style="width:90%; margin:50px auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+        <h2 style="color:#0a2c5e;">All Applications ({{ admissions|length }})</h2>
+        <a href="{{ url_for('dashboard') }}" class="hero-btn red-btn">← Back to Dashboard</a>
+    </div>
+
+    {% if admissions %}
+    <div class="table-wrapper">
+    <table class="syllabus-table">
+        <thead>
+            <tr>
+                <th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Course</th><th>Status</th><th>Applied</th><th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for app in admissions %}
+        <tr>
+            <td>{{ app['id'] }}</td>
+            <td>{{ app['full_name'] }}</td>
+            <td>{{ app['email'] }}</td>
+            <td>{{ app['phone'] }}</td>
+            <td>{{ app['course'] }}</td>
+            <td><span class="status-badge status-{{ app['status']|lower }}">{{ app['status'] }}</span></td>
+            <td>{{ app['applied_at'][:10] }}</td>
+            <td>
+                <form action="{{ url_for('update_admission_status', app_id=app['id']) }}" method="POST" style="display:inline;">
+                    <select name="status" onchange="this.form.submit()" style="padding:5px 8px; border-radius:4px; border:1px solid #ccc; font-size:13px;">
+                        <option value="Pending"  {% if app['status']=='Pending'  %}selected{% endif %}>Pending</option>
+                        <option value="Approved" {% if app['status']=='Approved' %}selected{% endif %}>Approve</option>
+                        <option value="Rejected" {% if app['status']=='Rejected' %}selected{% endif %}>Reject</option>
+                    </select>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% else %}
+    <p>No applications have been submitted yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

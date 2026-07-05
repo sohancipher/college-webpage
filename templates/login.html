@@ -1,0 +1,54 @@
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-header">
+        <div class="logo">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="College Logo">
+            </a>
+        </div>
+        <h1>College Management</h1>
+        <p>Welcome back! Please login to continue.</p>
+    </div>
+
+    <form class="login-form" action="{{ url_for('login') }}" method="POST">
+        <div class="form-group">
+            <label>Email Address</label>
+            <div class="input-with-icon">
+                <i class="fa fa-envelope"></i>
+                <input type="email" name="email" placeholder="Enter your email" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <div class="input-with-icon">
+                <i class="fa fa-lock"></i>
+                <input type="password" name="password" placeholder="Enter your password" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Login as</label>
+            <div class="role-selector">
+                <label class="role-option"><input type="radio" name="role" value="student"> Student</label>
+                <label class="role-option"><input type="radio" name="role" value="faculty"> Faculty</label>
+                <label class="role-option"><input type="radio" name="role" value="admin" checked> Admin</label>
+            </div>
+        </div>
+        <button type="submit" class="login-btn">
+            <i class="fa fa-sign-in"></i> Login to Dashboard
+        </button>
+    </form>
+
+    <div class="footer-links">
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+        <p style="margin-top:8px; color:#888; font-size:12px;">
+            
+        </p>
+        <p>© 2026 College Management System</p>
+    </div>
+</div>
+{% endblock %}

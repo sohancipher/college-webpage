@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Academics | Model College{% endblock %}
+
+{% block content %}
+<section class="sub-header">
+    {% include '_nav.html' %}
+    <h1>Academics</h1>
+</section>
+
+<section class="academics">
+    <h1>Academics</h1>
+    <p class="subtitle">Faculty Details &amp; Academic Resources</p>
+
+    <!-- Faculty -->
+    <div class="section">
+        <h2>Our Faculty</h2>
+        <div class="faculty-container">
+            <div class="faculty-card">
+                <img src="{{ url_for('static', filename='images/faculty1.jpeg') }}" alt="Faculty">
+                <h3>Dr. A. Sharma</h3>
+                <p>Professor</p>
+                <span>Department of Computer Science</span>
+            </div>
+            <div class="faculty-card">
+                <img src="{{ url_for('static', filename='images/faculty2.jpeg') }}" alt="Faculty">
+                <h3>Ms. R. Patil</h3>
+                <p>Assistant Professor</p>
+                <span>Department of Commerce</span>
+            </div>
+            <div class="faculty-card">
+                <img src="{{ url_for('static', filename='images/faculty3.jpeg') }}" alt="Faculty">
+                <h3>Mr. K. Mehta</h3>
+                <p>Lecturer</p>
+                <span>Department of IT</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Syllabus Table -->
+    <div class="section">
+        <h2>Academic Resources / Syllabus</h2>
+        <div class="table-wrapper">
+        <table class="syllabus-table">
+            <tr>
+                <th>Course</th>
+                <th>Syllabus</th>
+                <th>Download</th>
+            </tr>
+            <tr><td>BCom Regular</td><td>Commerce Core Subjects</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BCom Accountancy &amp; Finance</td><td>Accounting &amp; Financial Management</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BCom Banking &amp; Insurance</td><td>Banking Operations &amp; Insurance</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BCom Financial Markets</td><td>Capital &amp; Financial Markets</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BSc IT</td><td>Information Technology</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BSc Computer Science</td><td>Computer Science Core</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BSc Microbiology</td><td>Microbial Sciences</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BAMMC</td><td>Media &amp; Mass Communication</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BMS</td><td>Management Studies</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BSc Data Science</td><td>Data Science &amp; Analytics</td><td><a href="#">view details</a></td></tr>
+            <tr><td>BSc Artificial Intelligence</td><td>Artificial Intelligence &amp; ML</td><td><a href="#">view details</a></td></tr>
+        </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

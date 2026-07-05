@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}About Us | Model College{% endblock %}
+
+{% block content %}
+<section class="sub-header">
+    {% include '_nav.html' %}
+    <h1>About Us</h1>
+</section>
+
+<section class="about-us">
+    <div class="row">
+        <div class="about-col">
+            <h1>Why Choose Our University?</h1>
+            <p>The Model College was established in M.I.D.C. Dombivli (East) in 1989. Since then, the college has grown phenomenally, providing traditional grant-in-aid courses in Commerce as well as self-financing, job-oriented courses like BMS, B.Com Accounting & Finance, B.Com Banking & Insurance and B.Com Financial Markets.</p>
+            <p>The college also offers B.Sc Information Technology, BSc Computer Science, Bachelor in Mass Media, and Science at junior college level. Post-graduate courses in M.Com (Accountancy, Management, Banking & Finance) have been offered since 2009.</p>
+            <p>The college received an <strong>"A Grade"</strong> in 2006–07 and was reaccredited with "A Grade" in 2014–15 by NAAC. It holds UGC recognition under 2(f) and 12(B), entitling it to financial grants and full recognition. Known for strict discipline, spectacular results in sports and cultural activities, it is a multi-disciplinary, multi-faculty institution with a cosmopolitan culture.</p>
+            <a href="{{ url_for('courses') }}" class="hero-btn red-btn">EXPLORE COURSES</a>
+        </div>
+        <div class="about-col">
+            <img src="{{ url_for('static', filename='images/principle.jpeg') }}" alt="Principal">
+        </div>
+    </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-section">
+    <div class="stats-row">
+        <div class="stat-box">
+            <h2>35+</h2>
+            <p>Years of Excellence</p>
+        </div>
+        <div class="stat-box">
+            <h2>18+</h2>
+            <p>Programs Offered</p>
+        </div>
+        <div class="stat-box">
+            <h2>A Grade</h2>
+            <p>NAAC Accredited</p>
+        </div>
+        <div class="stat-box">
+            <h2>5000+</h2>
+            <p>Alumni Worldwide</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
